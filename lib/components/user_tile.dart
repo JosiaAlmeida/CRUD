@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 import 'package:sistemadecadastro/models/user.dart';
+import 'package:sistemadecadastro/provider/users.dart';
 
 class UserTile extends StatelessWidget {
   final User user;
@@ -13,6 +15,7 @@ class UserTile extends StatelessWidget {
     ): CircleAvatar(
       backgroundImage: NetworkImage(user.avatarUrl),
     );
+    final UserProvider users = Provider.of(context);
     return ListTile(
         leading: avatar,
         title: Text(user.name),
@@ -22,7 +25,9 @@ class UserTile extends StatelessWidget {
           child: Row(
             children: [
               IconButton(onPressed: () {}, icon: Icon(Icons.edit, color: Colors.red,)),
-              IconButton(onPressed: () {}, icon: Icon(Icons.delete, color: Colors.red))
+              IconButton(onPressed: () {
+                users.remove(user.id);
+              }, icon: Icon(Icons.delete, color: Colors.red))
             ],
           ),
         ));
