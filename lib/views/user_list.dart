@@ -4,6 +4,7 @@ import 'package:sistemadecadastro/components/user_tile.dart';
 import 'package:sistemadecadastro/data/user.dart';
 import 'package:sistemadecadastro/models/user.dart';
 import 'package:sistemadecadastro/provider/users.dart';
+import 'package:sistemadecadastro/routes/app_routes.dart';
 
 class UserList extends StatelessWidget {
   @override
@@ -12,10 +13,11 @@ class UserList extends StatelessWidget {
     final UserProvider users = Provider.of(context);
     return Scaffold(
       appBar: AppBar(
-        title: Text("Lista De Usuarios"),
+        title: Text("ListView All Users"),
         actions: <Widget>[
           IconButton(onPressed: (){
-            users.put(User(name: 'Almeida', avatarUrl: '', email: 'Almeida@gmail.com'));
+            //users.put(User(name: 'Almeida', avatarUrl: '', email: 'Almeida@gmail.com'));
+            Navigator.pushNamed(context, AppRoutes.USER_FORM);
           }, icon: Icon(Icons.add)),
         ],
       ),

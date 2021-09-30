@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:sistemadecadastro/provider/users.dart';
+import 'package:sistemadecadastro/routes/app_routes.dart';
+import 'package:sistemadecadastro/views/user_form.dart';
 import 'package:sistemadecadastro/views/user_list.dart';
 
 void main() {
@@ -18,11 +20,15 @@ class MyApp extends StatelessWidget {
         ),
       ],
       child: MaterialApp(
+        initialRoute: AppRoutes.HOME,
         title: 'Flutter Demo',
         theme: ThemeData(
           primarySwatch: Colors.blue,
         ),
-        home: UserList(),
+        routes: {
+          AppRoutes.HOME: (_)=> UserList(),
+          AppRoutes.USER_FORM:(_) => UserForm(),
+        },
       ),
     );
   }

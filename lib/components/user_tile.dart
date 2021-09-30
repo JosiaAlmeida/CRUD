@@ -3,6 +3,7 @@ import 'package:provider/provider.dart';
 
 import 'package:sistemadecadastro/models/user.dart';
 import 'package:sistemadecadastro/provider/users.dart';
+import 'package:sistemadecadastro/routes/app_routes.dart';
 
 class UserTile extends StatelessWidget {
   final User user;
@@ -24,7 +25,9 @@ class UserTile extends StatelessWidget {
           width: 100,
           child: Row(
             children: [
-              IconButton(onPressed: () {}, icon: Icon(Icons.edit, color: Colors.red,)),
+              IconButton(onPressed: () {
+                Navigator.pushNamed(context, AppRoutes.USER_FORM, arguments: user);
+              }, icon: Icon(Icons.edit, color: Colors.red,)),
               IconButton(onPressed: () {
                 users.remove(user.id);
               }, icon: Icon(Icons.delete, color: Colors.red))
