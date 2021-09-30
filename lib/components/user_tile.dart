@@ -28,9 +28,24 @@ class UserTile extends StatelessWidget {
               IconButton(onPressed: () {
                 Navigator.pushNamed(context, AppRoutes.USER_FORM, arguments: user);
               }, icon: Icon(Icons.edit, color: Colors.red,)),
-              IconButton(onPressed: () {
-                users.remove(user.id);
-              }, icon: Icon(Icons.delete, color: Colors.red))
+              IconButton(
+                icon: Icon(Icons.delete, color: Colors.red),
+                onPressed: () {
+                  showDialog(context: context,
+                    builder: (context) => AlertDialog(
+                      title: Text("Excluir Usuário"),
+                      content: Text("Tem certeza?"),
+                      actions: [
+                        ElevatedButton(onPressed: (){
+                          Navigator.of(context).pop();
+                        }, child: Text("Não!")),
+                        ElevatedButton(onPressed: (){
+                          users.remove(user.id);
+                          Navigator.of(context).pop();
+                        }, child: Text("Sim!"))
+                      ],
+                    ));
+              },)
             ],
           ),
         ));
